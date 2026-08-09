@@ -1,8 +1,10 @@
 # src/providers/anthropic_provider.py
-from anthropic import Anthropic
 from typing import Any
-from src.schemas import ToolSchema
+
+from anthropic import Anthropic
+
 from src.providers.base import AIProvider
+from src.schemas import ToolSchema
 
 
 class AnthropicProvider(AIProvider):
