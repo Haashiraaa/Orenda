@@ -1,16 +1,22 @@
+
 # src/scraper/extractor.py
+
+from typing import Any
+
 from src.providers.base import AIProvider
+from src.schemas import ToolSchema
+
 
 class Extractor:
     def __init__(self, provider: AIProvider):
         self._provider = provider
 
-    def extract(self, cleaned_html: str, fields: dict[str, str]) -> dict:
+    def extract(self, cleaned_html: str, fields: dict[str, str]) -> dict[str, Any]:
         tool_schema = self._build_tool_schema(fields)
         prompt = self._build_prompt(cleaned_html)
         return self._provider.extract_structured(prompt, tool_schema)
 
-    def _build_tool_schema(self, fields: dict[str, str]) -> dict:
+    def _build_tool_schema(self, fields: dict[str, str]) -> ToolSchema:
         properties = {name: {"type": "string", "description": desc} for name, desc in fields.items()}
         return {
             "name": "extract_data",

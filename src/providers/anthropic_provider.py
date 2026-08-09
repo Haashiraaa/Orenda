@@ -1,6 +1,8 @@
 # src/providers/anthropic_provider.py
 from anthropic import Anthropic
+
 from src.providers.base import AIProvider
+
 
 class AnthropicProvider(AIProvider):
     def __init__(self, api_key: str, model: str = "claude-sonnet-4-6"):

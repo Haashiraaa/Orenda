@@ -1,6 +1,7 @@
 # src/providers/factory.py
-from src.providers.base import AIProvider
 from src.providers.anthropic_provider import AnthropicProvider
+from src.providers.base import AIProvider
+
 
 def build_provider(provider_name: str, api_key: str) -> AIProvider:
     match provider_name.lower():
