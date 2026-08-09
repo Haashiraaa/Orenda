@@ -18,10 +18,11 @@ class Settings:
         'AI_PROVIDER': AI_PROVIDER,
     }
 
-    _missing: ClassVar[list[str]] = [name for name, value in _REQUIRED.items() if not value]
-    if _missing:
-        raise EnvVariableError(
-            "Missing required environment variables: "
-            + ", ".join(_missing)
-            + ". Copy .env.example to .env and fill these in."
-        )
+    @classmethod
+    def validate(cls) -> None:
+        missing = [name for name, value in cls._REQUIRED.items() if not value]
+        if missing:
+            raise EnvVariableError(
+                "Missing required environment variables: " + ", ".join(missing)
+                + ". Copy .env.example to .env and fill these in."
+            )
