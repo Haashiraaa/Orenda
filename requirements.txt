@@ -1,0 +1,13 @@
+
+# Core deps
+requests
+beautifulsoup4
+lxml
+anthropic
+playwright
+python-dotenv
+
+# Optional deps
+ruff
+pyright
+

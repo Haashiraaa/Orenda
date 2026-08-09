@@ -1,0 +1,42 @@
+
+
+# Byte-compiled / optimized / DLL files
+pycache/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+env/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Build/packaging
+build/
+dist/
+*.egg-info/
+
+# User data / credentials
+*.sqlite3
+*.db
+*.env
+
+# Diff files
+*.diff
+
+# Commit files
+*[cC][oO][mM][mM][iI][tT]*
