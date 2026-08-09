@@ -2,10 +2,9 @@
 
 # src/schemas.py
 
-from typing import Any, TypedDict
+#from typing import Any, TypedDict
+from anthropic.types import ToolParam
 
 
-class ToolSchema(TypedDict):
-    name: str
-    description: str
-    input_schema: dict[str, Any]
+class ToolSchema(ToolParam):
+    pass
