@@ -21,12 +21,24 @@ class Cleaner:
         for tag in soup(STRIP_TAGS):
             tag.decompose()
 
+        # Decide what to remove first, then remove it in a separate pass.
+        # Decomposing a parent detaches its children (their .attrs becomes
+        # None), so calling .decompose() mid-iteration over the same
+        # find_all() snapshot crashes once the loop reaches an
+        # already-orphaned child. Splitting decide/act avoids that.
+        to_remove = []
         for el in soup.find_all(True):
+            if el.attrs is None: # type: ignore[reportUnnecessaryComparison]
+                continue
             attrs = " ".join([
                 str(el.get("class", "")),
                 str(el.get("id", "")),
             ]).lower()
             if any(hint in attrs for hint in STRIP_HINTS):
+                to_remove.append(el)
+
+        for el in to_remove:
+            if el.parent is not None:  # skip if an ancestor already removed it
                 el.decompose()
 
         # Prefer <main> or <article> if present - usually where the real content is
